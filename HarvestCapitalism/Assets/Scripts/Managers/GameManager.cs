@@ -22,20 +22,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private static GameObject inventoryPanel;
     [SerializeField] private static GameObject currentPanel;
-    [SerializeField] public static GameObject interactingObject;
+    [SerializeField] public static Interactable interactingObject;
     [SerializeField] private static GameObject marketPanel;
 
-
-    public static Inventory inventory;
-
+    private static int Money = 100;
     // Start is called before the first frame update
     void Start()
     {
         inventoryPanel = GameObject.Find("InventoryPanel");
         inventoryPanel.SetActive(false);
         marketPanel = GameObject.Find("MarketPanel");
-        //marketPanel.SetActive(false);
-        inventory = Inventory.instance;
+        marketPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -57,9 +54,14 @@ public class GameManager : MonoBehaviour
     {
         return marketPanel;
     }
-    public static GameObject GetInteractingObject()
+    public static Interactable GetInteractingObject()
     {
         return interactingObject;
+    }
+
+    public static int GetMoney()
+    {
+        return Money;
     }
 
     #endregion
@@ -69,9 +71,13 @@ public class GameManager : MonoBehaviour
     {
         currentPanel = o;
     }
-    public static void SetInteractingObject(GameObject o)
+    public static void SetInteractingObject(Interactable o)
     {
         interactingObject = o;
+    }
+    public static void AddMoney(int i)
+    {
+        Money += i;
     }
     #endregion
 }

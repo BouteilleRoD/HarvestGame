@@ -19,6 +19,10 @@ public class MarketSlot : MonoBehaviour
 
     public void OpenPanel()
     {
+        if (GameObject.FindGameObjectWithTag("SubPanel"))
+        {
+            GameObject.FindGameObjectWithTag("SubPanel").SetActive(false);
+        }
         sellingPanel.SetActive(true);
         GameManager.SetCurrentPanel(sellingPanel);
     }

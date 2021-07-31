@@ -5,7 +5,7 @@ using UnityEngine;
 public class Seed : Item
 {
     public GameObject growingPlant;
-
+    
     public Sprite sprite;
 
     // Start is called before the first frame update
@@ -23,7 +23,14 @@ public class Seed : Item
     public override void Use()
     {
         base.Use();
-        GameManager.GetInteractingObject().GetComponent<PlantSlot>().SetSeed(this);
-        GameManager.GetInteractingObject().GetComponent<PlantSlot>().PlantingSeed();
+        if (GameManager.interactingObject is PlantSlot)
+        {
+            GameManager.GetInteractingObject().GetComponent<PlantSlot>().SetSeed(this);
+            GameManager.GetInteractingObject().GetComponent<PlantSlot>().PlantingSeed();
+        }
+        else
+        {
+            Debug.Log("Be infront of a slot");//TODO pop up
+        }
     }
 }

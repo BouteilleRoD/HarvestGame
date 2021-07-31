@@ -20,11 +20,11 @@ public class ButtonManager : MonoBehaviour
 
     #endregion
 
-    GameManager GM;
+
     // Start is called before the first frame update
     void Start()
     {
-        GM = GameManager.instance;
+        
     }
 
     // Update is called once per frame
@@ -45,13 +45,28 @@ public class ButtonManager : MonoBehaviour
 
     public void BuyItem(Item i)
     {
-        GameManager.inventory.Add(i);
-        //TODO retirer la monaie
+        if (Player.inventory.Add(i))
+        {
+            if (GameManager.GetMoney() > i.price)
+            {
+                GameManager.AddMoney(-i.price);
+                Debug.Log("Item bought !");
+            }
+            else
+            {
+                Debug.Log("Not enough money !");
+            }
+        }
+        else
+        {
+            //TODO pop up
+        }
     }
 
     public void SellItem(Item i)
     {
-        GameManager.inventory.Remove(i);
-        //TODO ajouter la monaie
+        Player.inventory.Remove(i);
+        GameManager.AddMoney(i.price);
+        Debug.Log("Item sold");
     }
 }

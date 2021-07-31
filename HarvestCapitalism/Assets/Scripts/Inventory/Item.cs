@@ -5,7 +5,7 @@ using UnityEngine;
 public class Item : MonoBehaviour
 {
     public ItemType type;
-    int price;
+    public int price;
 
     public GameObject usingPanel;
     // Start is called before the first frame update

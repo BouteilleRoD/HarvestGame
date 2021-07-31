@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  price: 10
   usingPanel: {fileID: 731030751967712884, guid: 67abcf15ee3804245b03acc07979fe99, type: 3}
   growingPlant: {fileID: 5006575428036140018, guid: f5aceb827414ad54d84240d63405283c, type: 3}
   sprite: {fileID: 21300000, guid: 49e91900412b5b248845d42a72a97a00, type: 3}

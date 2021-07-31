@@ -5,11 +5,11 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    public GameObject[] Inventory;
+    public static Inventory inventory;
 
     [SerializeField] Animator animator;
 
-    GameManager GM;
+
     //Attack Cooldown
     bool canAttack = true;
     float attackCooldown = 1.5f;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GM = GameManager.instance;
+        inventory = Inventory.instance;
     }
 
     // Update is called once per frame
@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
     public void OnInteract()
     {
         Debug.Log("Interact with " + GameManager.GetInteractingObject());
+        GameManager.GetInteractingObject().OnInteract();
     }
     public void PlantASeed(Seed seed)
     {
@@ -78,20 +79,10 @@ public class Player : MonoBehaviour
 
     public void OnOpenInventory()
     {
-        GameManager.GetInventoryPanel().SetActive(true);
-        if (GameManager.inventory.onItemsChangedCallBack != null)
+        GameManager.GetInventoryPanel().SetActive(!GameManager.GetInventoryPanel().activeSelf);
+        if (inventory.onItemsChangedCallBack != null)
         {
-            GameManager.inventory.onItemsChangedCallBack.Invoke();
+            inventory.onItemsChangedCallBack.Invoke();
         }
     }
-
-    //public void AddToInventory(GameObject o)
-    //{
-        
-    //}
-
-    //public void RemoveFromInventory(GameObject o)
-    //{
-
-    //}
 }
