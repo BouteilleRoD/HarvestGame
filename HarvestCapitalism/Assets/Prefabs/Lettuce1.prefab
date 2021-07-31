@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4789614540630866595}
   - component: {fileID: 4660762293634613419}
+  - component: {fileID: -860848023857086024}
   m_Layer: 0
   m_Name: Lettuce1
   m_TagString: Untagged
@@ -61,6 +62,19 @@ LODGroup:
     renderers:
     - renderer: {fileID: 4766957480116615543}
   m_Enabled: 1
+--- !u!114 &-860848023857086024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788902486798358949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 179a1697deb096c428ff0e62a631a3fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 6396ca4f01a2e994388565b38605a73a, type: 3}
 --- !u!1 &4788902488042623029
 GameObject:
   m_ObjectHideFlags: 0

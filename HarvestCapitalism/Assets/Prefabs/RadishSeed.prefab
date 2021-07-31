@@ -109,4 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c38296d3c4ec042b42302d0c21638d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedType: 2
+  type: 0
+  usingPanel: {fileID: 731030751967712884, guid: 67abcf15ee3804245b03acc07979fe99, type: 3}
+  growingPlant: {fileID: 5006575428036140018, guid: f5aceb827414ad54d84240d63405283c, type: 3}
+  sprite: {fileID: 21300000, guid: 49e91900412b5b248845d42a72a97a00, type: 3}

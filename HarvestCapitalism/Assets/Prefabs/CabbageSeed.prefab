@@ -109,4 +109,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70c38296d3c4ec042b42302d0c21638d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seedType: 1
+  type: 0
+  itemName: CabbageSeed
+  usingPanel: {fileID: 1338702207394053075, guid: 0ccef45c582a23d4d9c1957aa97030f1, type: 3}
+  growingPlant: {fileID: 5298149998070908332, guid: e1acaf93cd9429a4f90706aff30b359c, type: 3}
+  sprite: {fileID: 21300000, guid: 4a45800396bd7864780d9243f035195b, type: 3}
