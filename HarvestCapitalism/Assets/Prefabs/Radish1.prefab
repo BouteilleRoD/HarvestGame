@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5005563723292079070}
   - component: {fileID: 4975453963995963874}
   - component: {fileID: 4983468497493689306}
-  - component: {fileID: 5015391475465428016}
   m_Layer: 0
   m_Name: TallPlantRed_L0
   m_TagString: Untagged
@@ -82,20 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &5015391475465428016
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5006575427734120914}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 0025c68d7a8b62d49b8f0b39591f1889, type: 3}
 --- !u!1 &5006575428036140018
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +92,7 @@ GameObject:
   - component: {fileID: 5005563721026616518}
   - component: {fileID: 5161457498673393524}
   - component: {fileID: -1912567658130477354}
+  - component: {fileID: 3379311012304721650}
   m_Layer: 0
   m_Name: Radish1
   m_TagString: Plant
@@ -165,13 +151,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179a1697deb096c428ff0e62a631a3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 100
   recoltable: 0
   recolted: 0
   isAlive: 1
   growingDuration: 1
   price: 30
-  fruit: {fileID: 3281019456357146438, guid: 30d0ab21b35011048aac52d46c7f8b87, type: 3}
-  sprite: {fileID: 21300000, guid: 8f6edaae98563e542af05e4b4357e8f2, type: 3}
+  fruit: {fileID: 1034950174534262467, guid: 30d0ab21b35011048aac52d46c7f8b87, type: 3}
+--- !u!65 &3379311012304721650
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5006575428036140018}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4232743, y: 2.423274, z: 2.4232743}
+  m_Center: {x: 0, y: 1.3801187, z: 0}
 --- !u!1 &5006575429321527628
 GameObject:
   m_ObjectHideFlags: 0

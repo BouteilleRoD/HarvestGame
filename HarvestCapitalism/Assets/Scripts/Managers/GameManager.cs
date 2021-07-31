@@ -117,12 +117,12 @@ public class GameManager : MonoBehaviour
 
     public static void UpdatePlants()
     {
-        foreach(Plant p in Plants)
+        for(int i = 0; i < Plants.Count; i++)
         {
-            if (!p.isAlive)
+            if (!Plants[i].isAlive)
             {
-                RemovePlant(p);
-                Destroy(p.gameObject);
+                Destroy(Plants[i].gameObject);
+                RemovePlant(Plants[i]);
             }
         }
     }

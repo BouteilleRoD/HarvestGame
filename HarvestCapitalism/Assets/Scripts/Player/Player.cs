@@ -6,14 +6,15 @@ using UnityEngine.InputSystem;
 public class Player : MonoBehaviour
 {
     public static Inventory inventory;
-
+    [SerializeField] private AttackScript attackScript;
     [SerializeField] Animator animator;
 
 
-    //Attack Cooldown
+    //Attack 
     bool canAttack = true;
     float attackCooldown = 1.5f;
     float lastAttackTimer = 0f;
+    public float attackPower = 30f;
     //Movement Direction
     float Hdirection, Vdirection;
     float speed = 5f;
@@ -83,5 +84,16 @@ public class Player : MonoBehaviour
         {
             inventory.onItemsChangedCallBack.Invoke();
         }
+    }
+
+    public void attackTriggerEnable()
+    {
+        attackScript.gameObject.SetActive(true);
+    }
+
+    public void attackTriggerDisable()
+    {
+        attackScript.gameObject.SetActive(false);
+        animator.ResetTrigger("Attack");
     }
 }

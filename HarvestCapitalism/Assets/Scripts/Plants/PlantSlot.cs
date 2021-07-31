@@ -21,10 +21,18 @@ public class PlantSlot : Interactable
     // Update is called once per frame
     void Update()
     {
-        if(state == State.FULL && plant.recoltable)
+        if(state == State.FULL)
         {
-            state = State.RECOLTABLE;
+            if (plant.recoltable)
+            {
+                state = State.RECOLTABLE;
+            }
+            if(plantObject == null)
+            {
+                state = State.EMPTY;
+            }
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)

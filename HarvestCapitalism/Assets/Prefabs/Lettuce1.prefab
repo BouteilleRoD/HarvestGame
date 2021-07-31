@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4789614540630866595}
   - component: {fileID: 4660762293634613419}
   - component: {fileID: -860848023857086024}
+  - component: {fileID: 7875373468085706820}
   m_Layer: 0
   m_Name: Lettuce1
   m_TagString: Plant
@@ -74,12 +75,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179a1697deb096c428ff0e62a631a3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HP: 100
   recoltable: 0
   recolted: 0
   isAlive: 1
   growingDuration: 1
   price: 10
   fruit: {fileID: -8447247165376687627, guid: 09dd48d09c5b1a941be06a05e705f536, type: 3}
+--- !u!65 &7875373468085706820
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4788902486798358949}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.159771, y: 3.159771, z: 3.159771}
+  m_Center: {x: 0, y: 1.0798836, z: 0}
 --- !u!1 &4788902488042623029
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,7 +187,6 @@ GameObject:
   - component: {fileID: 4789614540528885647}
   - component: {fileID: 4756691431871525259}
   - component: {fileID: 4766957493811159153}
-  - component: {fileID: 4797823829162678191}
   m_Layer: 0
   m_Name: SmallPlant3_L0
   m_TagString: Untagged
@@ -243,20 +257,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4797823829162678191
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4788902488402160797}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: b3f80c39c32eb644381598fed07e8417, type: 3}
 --- !u!1 &4788902488519554225
 GameObject:
   m_ObjectHideFlags: 0

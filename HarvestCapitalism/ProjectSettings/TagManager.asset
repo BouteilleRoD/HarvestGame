@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SubPanel
   - Plant
+  - Enemy
   layers:
   - Default
   - TransparentFX
