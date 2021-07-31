@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5915461502453031254}
   - component: {fileID: 5923214072244939948}
   - component: {fileID: 6034067552707019120}
+  - component: {fileID: 3473354384084572386}
   m_Layer: 0
   m_Name: Cabbage
   m_TagString: Untagged
@@ -95,3 +96,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.2842536
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3473354384084572386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5936096368604194826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ad375e729bf1a49b60f76370a73b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  price: 30
+  sprite: {fileID: 21300000, guid: a9e687b6833411248946a84009c41d5c, type: 3}

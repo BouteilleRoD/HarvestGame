@@ -11,17 +11,8 @@ public class InventorySlot : MonoBehaviour
     public void AddItem(Item i)
     {
         item = i;
-        if (i.GetComponent<Seed>())
-        {
-            icon.sprite = i.GetComponent<Seed>().sprite;
-            icon.enabled = true;
-        }
-        else
-        {
-            icon.sprite = i.GetComponent<Plant>().sprite;
-            icon.enabled = true;
-        }
-        
+        icon.sprite = item.sprite;
+        icon.enabled = true;
     }
 
     public void ClearSlot()

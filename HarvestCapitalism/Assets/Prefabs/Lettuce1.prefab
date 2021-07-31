@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -860848023857086024}
   m_Layer: 0
   m_Name: Lettuce1
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -74,7 +74,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179a1697deb096c428ff0e62a631a3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 6396ca4f01a2e994388565b38605a73a, type: 3}
+  recoltable: 0
+  recolted: 0
+  isAlive: 1
+  growingDuration: 1
+  price: 10
+  fruit: {fileID: -8447247165376687627, guid: 09dd48d09c5b1a941be06a05e705f536, type: 3}
 --- !u!1 &4788902488042623029
 GameObject:
   m_ObjectHideFlags: 0

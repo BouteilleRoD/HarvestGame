@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Plant : MonoBehaviour
 {
-    bool recoltable = false;
+    public bool recoltable = false;
+    public bool recolted = false;
+    public bool isAlive = true;
     int growingState = 0;
-    int growingDuration = 1;
-    int price = 10;
-
-    public Sprite sprite;
+    public int growingDuration = 1;
+    public int price = 10;
+   
+    public Item fruit;
     
     // Start is called before the first frame update
     void Start()
@@ -25,14 +27,18 @@ public class Plant : MonoBehaviour
 
     public void CheckRecoltable() 
     {
-        if(growingState == growingDuration)
+        if(growingState >= growingDuration)
         {
             recoltable = true;
         }
     }
     public void Growing()
     {
-        growingState++;
-        transform.localScale = transform.localScale * 5f;
+        if (!recoltable)
+        {
+            growingState++;
+            transform.localScale = transform.localScale * 5f;
+            CheckRecoltable();
+        }
     }
 }

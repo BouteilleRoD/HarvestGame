@@ -24,8 +24,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private static GameObject currentPanel;
     [SerializeField] public static Interactable interactingObject;
     [SerializeField] private static GameObject marketPanel;
+    [SerializeField] private LightingManager LM;
+    [SerializeField] private static List<Plant> Plants = new List<Plant>();
 
     private static int Money = 100;
+    public int DayCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,12 +36,26 @@ public class GameManager : MonoBehaviour
         inventoryPanel.SetActive(false);
         marketPanel = GameObject.Find("MarketPanel");
         marketPanel.SetActive(false);
+        LM.TimeOfDay = 36f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (LM.TimeOfDay >= 37.5f - Time.deltaTime && LM.TimeOfDay <= 37.5f)
+        {
+            DayCount++;
+            Debug.Log("Daycount ++");
+            UpdatePlants();
+            foreach (Plant p in Plants)
+            {
+                if (p.recolted)
+                {
+                    RemovePlant(p);
+                }
+                p.Growing();
+            }
+        }
     }
     #region Getters
     public static GameObject GetInventoryPanel()
@@ -80,4 +97,33 @@ public class GameManager : MonoBehaviour
         Money += i;
     }
     #endregion
+
+    public static void AddPlant(Plant p)
+    {
+        Plants.Add(p);
+    }
+
+    public static void RemovePlant(Plant p)
+    {
+        Plants.Remove(p);
+    }
+    public static void GatherFruit(Plant p)
+    {
+        if (p.isAlive)
+        {
+            if(Player.inventory.Add(p.fruit)) UpdatePlants();
+        }
+    }
+
+    public static void UpdatePlants()
+    {
+        foreach(Plant p in Plants)
+        {
+            if (!p.isAlive)
+            {
+                RemovePlant(p);
+                Destroy(p.gameObject);
+            }
+        }
+    }
 }

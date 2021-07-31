@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -8755169267532527744}
   m_Layer: 0
   m_Name: Cabbage1
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -109,4 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179a1697deb096c428ff0e62a631a3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: a9e687b6833411248946a84009c41d5c, type: 3}
+  recoltable: 0
+  recolted: 0
+  isAlive: 1
+  growingDuration: 3
+  price: 10
+  fruit: {fileID: -8574268720300419129, guid: bdb9d7342038dce4ca92e7919c57aaf7, type: 3}
+  sprite: {fileID: 21300000, guid: a9e687b6833411248946a84009c41d5c, type: 3}

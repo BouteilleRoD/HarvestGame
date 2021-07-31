@@ -5,8 +5,10 @@ using UnityEngine;
 public class Seed : Item
 {
     public GameObject growingPlant;
-    
-    public Sprite sprite;
+
+
+
+    public GameObject usingPanel;
 
     // Start is called before the first frame update
     void Start()

@@ -6,7 +6,8 @@ public class PlantSlot : Interactable
 {
 
     public Seed seed;
-    public GameObject plant;
+    public GameObject plantObject;
+    public Plant plant;
     State state = State.EMPTY;
     Outline outline;
 
@@ -14,12 +15,16 @@ public class PlantSlot : Interactable
     void Start()
     {
         outline = GetComponent<Outline>();
+        State state = State.EMPTY;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(state == State.FULL && plant.recoltable)
+        {
+            state = State.RECOLTABLE;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -47,10 +52,15 @@ public class PlantSlot : Interactable
 
     public void PlantingSeed()
     {
-        plant = Instantiate(seed.GetComponent<Seed>().growingPlant, transform.position, transform.rotation);
-        plant.transform.parent = gameObject.transform;
-        state = State.FULL;
-        Player.inventory.Remove(seed);
+        if (state == State.EMPTY)
+        {
+            plantObject = Instantiate(seed.growingPlant, transform.position, transform.rotation);
+            plantObject.transform.parent = gameObject.transform;
+            plant = plantObject.GetComponent<Plant>();
+            GameManager.AddPlant(plant);
+            state = State.FULL;
+            Player.inventory.Remove(seed);
+        }
     }
 
     public void SetSeed(Seed s)
@@ -61,9 +71,23 @@ public class PlantSlot : Interactable
     public override void OnInteract()
     {
         base.OnInteract();
-        GameManager.GetInventoryPanel().SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        Debug.Log("State : " + state);
+        switch (state) {
+            case State.EMPTY:
+            GameManager.GetInventoryPanel().SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+                break;
+            case State.FULL:
+                //TODO Afficher un pop up du type "growing state (x/3)"
+                break;
+            case State.RECOLTABLE:
+                GameManager.GatherFruit(plant);
+                plant.recolted = true;
+                Destroy(plantObject);
+                state = State.EMPTY;
+                break;
+        }
     }
 }
 

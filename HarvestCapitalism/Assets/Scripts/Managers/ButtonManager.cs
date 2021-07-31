@@ -63,10 +63,5 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
-    public void SellItem(Item i)
-    {
-        Player.inventory.Remove(i);
-        GameManager.AddMoney(i.price);
-        Debug.Log("Item sold");
-    }
+    
 }

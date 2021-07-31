@@ -6,8 +6,7 @@ public class Item : MonoBehaviour
 {
     public ItemType type;
     public int price;
-
-    public GameObject usingPanel;
+    public Sprite sprite;
     // Start is called before the first frame update
     void Start()
     {

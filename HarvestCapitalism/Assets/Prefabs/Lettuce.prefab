@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8586429457035669225}
   - component: {fileID: 8578701072873539911}
   - component: {fileID: 8539810623637621341}
+  - component: {fileID: -8447247165376687627}
   m_Layer: 0
   m_Name: Lettuce
   m_TagString: Untagged
@@ -95,3 +96,18 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.23524998
   m_Center: {x: 0.004884854, y: 0.0050864965, z: -0.007918552}
+--- !u!114 &-8447247165376687627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8601753030756261319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ad375e729bf1a49b60f76370a73b7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  price: 10
+  sprite: {fileID: 21300000, guid: 6396ca4f01a2e994388565b38605a73a, type: 3}

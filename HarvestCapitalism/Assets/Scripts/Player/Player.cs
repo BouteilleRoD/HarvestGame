@@ -69,8 +69,7 @@ public class Player : MonoBehaviour
 
     public void OnInteract()
     {
-        Debug.Log("Interact with " + GameManager.GetInteractingObject());
-        GameManager.GetInteractingObject().OnInteract();
+        if(GameManager.GetInteractingObject()) GameManager.GetInteractingObject().OnInteract();
     }
     public void PlantASeed(Seed seed)
     {
