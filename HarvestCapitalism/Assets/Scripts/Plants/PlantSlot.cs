@@ -66,6 +66,10 @@ public class PlantSlot : Interactable
         if (state == State.EMPTY)
         {
             plantObject = Instantiate(seed.growingPlant, transform.position, transform.rotation);
+            if (AudioManager.instance)
+            {
+                AudioManager.instance.PlaySFX("sfx_plantseed");
+            }
             plantObject.transform.parent = gameObject.transform;
             plant = plantObject.GetComponent<Plant>();
             GameManager.AddPlant(plant);

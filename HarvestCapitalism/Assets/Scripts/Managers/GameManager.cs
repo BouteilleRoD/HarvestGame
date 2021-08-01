@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -23,18 +24,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject GameOverPanel;
     [SerializeField] private GameObject PausePanel;
     [SerializeField] private LightingManager LM;
-    [SerializeField] private Text gameOverText;
+    [SerializeField] private TMP_Text gameOverText;
     [SerializeField] private GameObject Enemy;
     private static GameObject inventoryPanel;
     private static GameObject currentPanel;
     public static Interactable interactingObject;
     private static GameObject marketPanel;
     private static List<Plant> Plants = new List<Plant>();
-    private static Text MoneyText;
+    private static TMP_Text MoneyText;
     private static int Money = 100;
     private static bool isPaused = false;
 
-    private Text dayText;
+    private TMP_Text dayText;
     private int numberOfEnemyToSpawn = 0;
     private bool isNight = false;
     private float DayTimeIncrement = 10f;
@@ -243,8 +244,8 @@ public class GameManager : MonoBehaviour
             PausePanel.SetActive(false);
         }
         LM.TimeOfDay = LightingManager.MaxTimeOfDay * 0.25f + 1;
-        MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
-        dayText = GameObject.Find("DayText").GetComponent<Text>();
+        MoneyText = GameObject.Find("MoneyText").GetComponent<TMP_Text>();
+        dayText = GameObject.Find("DayText").GetComponent<TMP_Text>();
         if (AudioManager.instance)
         {
             AudioManager.instance.PlayMusic("ingameMusic");

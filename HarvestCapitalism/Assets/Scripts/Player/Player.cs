@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     //Movement Direction
     float Hdirection, Vdirection;
     float mouvementSpeed = 5f;
+    Vector3 sideTranslate;
+    Vector3 frontTranslate;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +30,8 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //Vector3 sideTranslate = GetComponentInChildren<CameraControler>().GetLateral() * Hdirection * mouvementSpeed * Time.deltaTime;
-        //Vector3 frontTranslate = GetComponentInChildren<CameraControler>().GetVertical() * Vdirection * mouvementSpeed * Time.deltaTime;
         //rb.MovePosition(transform.position + (sideTranslate + frontTranslate));
-        //rb.velocity = (sideTranslate + frontTranslate)
+        //rb.velocity = (sideTranslate + frontTranslate) * mouvementSpeed;
         if (Hdirection == 0 && Vdirection == 0)
         {
             rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX;
@@ -46,10 +46,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 sideTranslate = Vector3.right * Hdirection * mouvementSpeed * Time.deltaTime;
-        Vector3 frontTranslate = Vector3.forward * Vdirection * mouvementSpeed * Time.deltaTime;
+
+        //sideTranslate = GetComponentInChildren<CameraControler>().GetLateral() * Hdirection * Time.deltaTime;
+        //frontTranslate = GetComponentInChildren<CameraControler>().GetVertical() * Vdirection * Time.deltaTime;
+        sideTranslate = Vector3.right * Hdirection * mouvementSpeed * Time.deltaTime;
+        frontTranslate = Vector3.forward * Vdirection * mouvementSpeed * Time.deltaTime;
         transform.Translate(sideTranslate + frontTranslate);
-        
+
         if (Time.time - lastAttackTimer > attackCooldown && !canAttack)
         {
             canAttack = true;

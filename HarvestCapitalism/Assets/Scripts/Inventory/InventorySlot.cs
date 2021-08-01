@@ -28,6 +28,10 @@ public class InventorySlot : MonoBehaviour
         if(item != null)
         {
             item.Use();
+            if (AudioManager.instance)
+            {
+                AudioManager.instance.PlaySFX("sfx_button");
+            }
         }
     }
 }
