@@ -36,18 +36,27 @@ public class ButtonManager : MonoBehaviour
     public void CloseCurrentPanel()
     {
         GameManager.GetCurrentPanel().SetActive(false);
-        AudioManager.instance.PlaySFX("sfx_button");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+        }
     }
 
     public void CloseInventory()
     {
         GameManager.GetInventoryPanel().SetActive(false);
-        AudioManager.instance.PlaySFX("sfx_button");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+        }
     }
 
     public void BuyItem(Item i)
     {
-        AudioManager.instance.PlaySFX("sfx_button");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+        }
         if (Player.inventory.Add(i))
         {
             if (GameManager.GetMoney() > i.price)
@@ -68,42 +77,60 @@ public class ButtonManager : MonoBehaviour
 
     public void Restart()
     {
-
-        AudioManager.instance.PlaySFX("sfx_button");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void Play()
     {
-
-        AudioManager.instance.PlaySFX("sfx_button");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+        }
         SceneManager.LoadScene(1); 
     }
 
     public void MainMenu()
     {
-
-        AudioManager.instance.PlaySFX("sfx_button");
-        AudioManager.instance.PlayMusic("menuMusic");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+            AudioManager.instance.PlayMusic("menuMusic");
+        }
+        if (GameManager.GetisPaused())
+        {
+            gameManager.Resume();
+        }
         SceneManager.LoadScene(0);
     }
 
     public void OpenPanel(GameObject o)
     {
-        AudioManager.instance.PlaySFX("sfx_button");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+        }
         o.SetActive(true);
     }
 
     public void CloseMenu(GameObject o)
     {
-        AudioManager.instance.PlaySFX("sfx_button");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+        }
         o.SetActive(false);
     }
 
     public void Quit()
     {
-
-        AudioManager.instance.PlaySFX("sfx_button");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_button");
+        }
         Application.Quit();
     }
 

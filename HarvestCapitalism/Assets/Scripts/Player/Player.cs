@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     float attackCooldown = 1.5f;
     float lastAttackTimer = 0f;
     public float attackPower = 30f;
+    private Rigidbody rb;
     //Movement Direction
     float Hdirection, Vdirection;
     float mouvementSpeed = 5f;
@@ -22,16 +23,33 @@ public class Player : MonoBehaviour
     void Start()
     {
         inventory = Inventory.instance;
+        rb = GetComponent<Rigidbody>();
     }
 
+    private void FixedUpdate()
+    {
+        //Vector3 sideTranslate = GetComponentInChildren<CameraControler>().GetLateral() * Hdirection * mouvementSpeed * Time.deltaTime;
+        //Vector3 frontTranslate = GetComponentInChildren<CameraControler>().GetVertical() * Vdirection * mouvementSpeed * Time.deltaTime;
+        //rb.MovePosition(transform.position + (sideTranslate + frontTranslate));
+        //rb.velocity = (sideTranslate + frontTranslate)
+        if (Hdirection == 0 && Vdirection == 0)
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezePositionX;
+        }
+        else
+        {
+            rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+
+        }
+    }
     // Update is called once per frame
     void Update()
     {
         Vector3 sideTranslate = Vector3.right * Hdirection * mouvementSpeed * Time.deltaTime;
         Vector3 frontTranslate = Vector3.forward * Vdirection * mouvementSpeed * Time.deltaTime;
         transform.Translate(sideTranslate + frontTranslate);
-
-
+        
         if (Time.time - lastAttackTimer > attackCooldown && !canAttack)
         {
             canAttack = true;
@@ -73,11 +91,22 @@ public class Player : MonoBehaviour
 
     public void OnInteract()
     {
-        if(GameManager.GetInteractingObject()) GameManager.GetInteractingObject().OnInteract();
+        if (GameManager.GetInteractingObject())
+        {
+            GameManager.GetInteractingObject().OnInteract();
+            if (AudioManager.instance) 
+            {
+                AudioManager.instance.PlaySFX("sfx_interact");
+            }
+        }
     }
     public void PlantASeed(Seed seed)
     {
         GameManager.GetInteractingObject().GetComponent<PlantSlot>().seed = seed;
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_plantseed");
+        }
     }
 
     public void OnOpenInventory()
@@ -92,10 +121,27 @@ public class Player : MonoBehaviour
     public void attackTriggerEnable()
     {
         attackScript.gameObject.SetActive(true);
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX("sfx_attack");
+        }
     }
 
     public void attackTriggerDisable()
     {
         attackScript.gameObject.SetActive(false);
+    }
+
+    public void PlayWalk()
+    {
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX("sfx_step");
+        }
+    }
+
+    public void OnSetPause()
+    {
+        GameManager.SetPause(!GameManager.GetisPaused());
     }
 }

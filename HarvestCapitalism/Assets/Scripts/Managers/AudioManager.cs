@@ -25,7 +25,7 @@ public class AudioManager : MonoBehaviour
     public AudioMixerGroup SFXGroup;
     public AudioMixerGroup MusicGroup;
     public AudioClip sfx_button, sfx_attack, sfx_plantseed, sfx_pickfruit, sfx_interact,
-        sfx_enemyattack, sfx_enemydie, sfx_hit, sfx_daystart, sfx_nightstart, sfx_gameover;
+        sfx_enemyattack, sfx_enemydie, sfx_hit, sfx_daystart, sfx_nightstart, sfx_gameover, sfx_step;
 
     public AudioClip menuMusic, ingameMusic;
 
@@ -72,6 +72,9 @@ public class AudioManager : MonoBehaviour
             case "sfx_gameover":
                 CreateSFXSource(sfx_gameover);
                 break;
+            case "sfx_step":
+                CreateSFXSource(sfx_step);
+                break;
         }
     }
 
@@ -117,4 +120,5 @@ public class AudioManager : MonoBehaviour
         //Play the clip
         currentMusicObject.GetComponent<AudioSource>().Play();
     }
+    
 }

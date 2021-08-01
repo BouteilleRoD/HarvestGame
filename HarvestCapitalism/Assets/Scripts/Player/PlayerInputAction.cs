@@ -57,6 +57,14 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""SetPause"",
+                    ""type"": ""Button"",
+                    ""id"": ""69c780be-52b1-4cc0-81e9-b65a150ff930"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -158,6 +166,17 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c434d699-24f1-4a4d-9da5-7fdbeee1debf"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SetPause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -171,6 +190,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         m_KeyboardMouse_Attack = m_KeyboardMouse.FindAction("Attack", throwIfNotFound: true);
         m_KeyboardMouse_Interact = m_KeyboardMouse.FindAction("Interact", throwIfNotFound: true);
         m_KeyboardMouse_OpenInventory = m_KeyboardMouse.FindAction("OpenInventory", throwIfNotFound: true);
+        m_KeyboardMouse_SetPause = m_KeyboardMouse.FindAction("SetPause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -225,6 +245,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     private readonly InputAction m_KeyboardMouse_Attack;
     private readonly InputAction m_KeyboardMouse_Interact;
     private readonly InputAction m_KeyboardMouse_OpenInventory;
+    private readonly InputAction m_KeyboardMouse_SetPause;
     public struct KeyboardMouseActions
     {
         private @PlayerInputAction m_Wrapper;
@@ -234,6 +255,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         public InputAction @Attack => m_Wrapper.m_KeyboardMouse_Attack;
         public InputAction @Interact => m_Wrapper.m_KeyboardMouse_Interact;
         public InputAction @OpenInventory => m_Wrapper.m_KeyboardMouse_OpenInventory;
+        public InputAction @SetPause => m_Wrapper.m_KeyboardMouse_SetPause;
         public InputActionMap Get() { return m_Wrapper.m_KeyboardMouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -258,6 +280,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @OpenInventory.started -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.performed -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.canceled -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnOpenInventory;
+                @SetPause.started -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnSetPause;
+                @SetPause.performed -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnSetPause;
+                @SetPause.canceled -= m_Wrapper.m_KeyboardMouseActionsCallbackInterface.OnSetPause;
             }
             m_Wrapper.m_KeyboardMouseActionsCallbackInterface = instance;
             if (instance != null)
@@ -277,6 +302,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @OpenInventory.started += instance.OnOpenInventory;
                 @OpenInventory.performed += instance.OnOpenInventory;
                 @OpenInventory.canceled += instance.OnOpenInventory;
+                @SetPause.started += instance.OnSetPause;
+                @SetPause.performed += instance.OnSetPause;
+                @SetPause.canceled += instance.OnSetPause;
             }
         }
     }
@@ -288,5 +316,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         void OnAttack(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
+        void OnSetPause(InputAction.CallbackContext context);
     }
 }

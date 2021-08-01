@@ -21,10 +21,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] private GameObject GameOverPanel;
+    [SerializeField] private GameObject PausePanel;
     [SerializeField] private LightingManager LM;
     [SerializeField] private Text gameOverText;
     [SerializeField] private GameObject Enemy;
-
     private static GameObject inventoryPanel;
     private static GameObject currentPanel;
     public static Interactable interactingObject;
@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
     private static List<Plant> Plants = new List<Plant>();
     private static Text MoneyText;
     private static int Money = 100;
+    private static bool isPaused = false;
 
     private Text dayText;
     private int numberOfEnemyToSpawn = 0;
@@ -54,11 +55,19 @@ public class GameManager : MonoBehaviour
         {
             GameOver();
         }
+        if (isPaused)
+        {
+            Pause();
+        }
     }
 
     private void OnNightStart()
     {
         isNight = true;
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX("sfx_nightstart");
+        }
         if (isNight && numberOfEnemyToSpawn == 0)
         {
             foreach (Plant p in Plants)
@@ -73,6 +82,7 @@ public class GameManager : MonoBehaviour
     private void OnDayStart()
     {
         DayCount++;
+        AudioManager.instance.PlaySFX("sfx_daystart");
         UpdateDayText();
         if(DayCount % 10 == 0)
         {
@@ -129,6 +139,11 @@ public class GameManager : MonoBehaviour
         }
         return null;
     }
+
+    public static bool GetisPaused()
+    {
+        return isPaused;
+    }
     #endregion
 
     #region Setters
@@ -143,6 +158,11 @@ public class GameManager : MonoBehaviour
     public static void AddMoney(int i)
     {
         Money += i;
+    }
+
+    public static void SetPause(bool b)
+    {
+        isPaused = b;
     }
     #endregion
 
@@ -159,7 +179,14 @@ public class GameManager : MonoBehaviour
     {
         if (p.isAlive)
         {
-            if(Player.inventory.Add(p.fruit)) UpdatePlants();
+            if (Player.inventory.Add(p.fruit))
+            {
+                if (AudioManager.instance) 
+                { 
+                    AudioManager.instance.PlaySFX("sfx_pickfruit");
+                }
+                UpdatePlants();
+            }
         }
     }
 
@@ -210,10 +237,18 @@ public class GameManager : MonoBehaviour
         inventoryPanel.SetActive(false);
         marketPanel = GameObject.Find("MarketPanel");
         marketPanel.SetActive(false);
+        Time.timeScale = 1f;
+        if (PausePanel.activeSelf)
+        {
+            PausePanel.SetActive(false);
+        }
         LM.TimeOfDay = LightingManager.MaxTimeOfDay * 0.25f + 1;
         MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
         dayText = GameObject.Find("DayText").GetComponent<Text>();
-        AudioManager.instance.PlayMusic("ingameMusic");
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlayMusic("ingameMusic");
+        }
         LM.OnNight += OnNightStart;
         LM.OnDay += OnDayStart;
         if (GameOverPanel.activeSelf)
@@ -234,7 +269,27 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         gameOverText.text = "You survived for " + DayCount + "days.";
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX("sfx_gameover");
+        }
         GameOverPanel.SetActive(true);
         ResetGame();
+    }
+    public void Resume()
+    {
+        isPaused = false;
+        PausePanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
+        Time.timeScale = 1f;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0f;
+        PausePanel.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

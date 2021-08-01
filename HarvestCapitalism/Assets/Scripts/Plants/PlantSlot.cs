@@ -15,7 +15,7 @@ public class PlantSlot : Interactable
     void Start()
     {
         outline = GetComponent<Outline>();
-        State state = State.EMPTY;
+        state = State.EMPTY;
     }
 
     // Update is called once per frame

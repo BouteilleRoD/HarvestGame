@@ -33,6 +33,7 @@ public class AttackScript : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
+                AudioManager.instance.PlaySFX("sfx_hit");
                 other.GetComponent<Enemy>().HP -= _attackPower;
             }
         }

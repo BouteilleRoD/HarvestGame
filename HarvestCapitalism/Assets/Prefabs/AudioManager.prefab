@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8987606928387528631
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8987606928387528629}
+  - component: {fileID: 8987606928387528630}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8987606928387528629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987606928387528631}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8987606928387528630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8987606928387528631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe0b774165b153d4288791117fc084af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myMixer: {fileID: 24100000, guid: c7438ce03a97dff42a1358a39579f48a, type: 2}
+  SFXGroup: {fileID: -8243847215700799337, guid: c7438ce03a97dff42a1358a39579f48a, type: 2}
+  MusicGroup: {fileID: -5661002365075180077, guid: c7438ce03a97dff42a1358a39579f48a, type: 2}
+  sfx_button: {fileID: 8300000, guid: 0e5a3c9a677d53540b0dfa86ef0a43f5, type: 3}
+  sfx_attack: {fileID: 8300000, guid: fe0b1f9aeb45b41b089175aeeabd5d95, type: 3}
+  sfx_plantseed: {fileID: 8300000, guid: ffb159a21c8a04135a5616979c828fab, type: 3}
+  sfx_pickfruit: {fileID: 8300000, guid: b850ea8327d0b124885a68d085662892, type: 3}
+  sfx_interact: {fileID: 8300000, guid: 0994c12e202f342459a4212e7287f7e8, type: 3}
+  sfx_enemyattack: {fileID: 8300000, guid: 9863916b8a4c98d4ca2bf26cd6bc0667, type: 3}
+  sfx_enemydie: {fileID: 8300000, guid: 56318ebed2ac5f84fbbca1c79a7ba1fd, type: 3}
+  sfx_hit: {fileID: 8300000, guid: f4c2fa7cec2c51b4d9bcfb054e0d05ec, type: 3}
+  sfx_daystart: {fileID: 8300000, guid: b73e4c1b31a7ef947b5cf08ac38d2ff0, type: 3}
+  sfx_nightstart: {fileID: 8300000, guid: d702fca421b1c4742a22028619e521e5, type: 3}
+  sfx_gameover: {fileID: 8300000, guid: f2a3fd15c856db9439c5d839f188890b, type: 3}
+  sfx_step: {fileID: 8300000, guid: 55c7131061e8ac141a1c6723a59ba0a9, type: 3}
+  menuMusic: {fileID: 8300000, guid: 095efb5a8a907774ca4ca0492e07c73d, type: 3}
+  ingameMusic: {fileID: 8300000, guid: 2ffd8bdb848742a4594baed1a4b823b6, type: 3}
+  SoundSource: {fileID: 8925271615991342593, guid: bc410e4f864c7274992727a652310169, type: 3}
+  currentMusicObject: {fileID: 0}

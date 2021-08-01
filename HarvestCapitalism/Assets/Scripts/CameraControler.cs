@@ -47,6 +47,8 @@ public class CameraControler : MonoBehaviour
         lookDirection = Quaternion.AngleAxis(yAngle, lateralDirection) * lookDirection;
 
         //orienting player according to camera direction
+
+        
         cameraPivot.transform.forward = lookDirection.normalized;
         playerLookDirection = new Vector3(lookDirection.x, 0f, lookDirection.z);
         player.transform.forward = playerLookDirection;

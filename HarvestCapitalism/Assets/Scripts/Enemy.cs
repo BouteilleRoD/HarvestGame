@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     #endregion
     private StateMachine<Enemy> fsm;
     private Chasing chasing;
+    bool isDying = false;
     //Attack
     private Attacking attacking;
     public StateMachine<Enemy> FSM
@@ -45,10 +46,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(HP <= 0)
+        if(HP <= 0 && !isDying)
         {
             StartCoroutine("Die");
-            
         }
     }
     private void FixedUpdate()
@@ -104,8 +104,21 @@ public class Enemy : MonoBehaviour
 
     IEnumerator Die()
     {
+        isDying = true;
         animator.SetTrigger("Dead");
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_enemydie");
+        }
         yield return new WaitForSeconds(1);
         Destroy(gameObject);
+    }
+
+    public void PlayAttack()
+    {
+        if (AudioManager.instance) 
+        {
+            AudioManager.instance.PlaySFX("sfx_enemyattack");
+        }
     }
 }
