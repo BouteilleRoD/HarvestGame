@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonManager : MonoBehaviour
 {
@@ -15,12 +16,11 @@ public class ButtonManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     #endregion
 
-
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,5 +63,24 @@ public class ButtonManager : MonoBehaviour
         }
     }
 
-    
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Play()
+    {
+        SceneManager.LoadScene(1); 
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
+
 }

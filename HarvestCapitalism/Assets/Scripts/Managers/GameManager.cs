@@ -16,45 +16,44 @@ public class GameManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
     }
 
     #endregion
 
-    [SerializeField] private static GameObject inventoryPanel;
-    [SerializeField] private static GameObject currentPanel;
-    [SerializeField] public static Interactable interactingObject;
-    [SerializeField] private static GameObject marketPanel;
+    [SerializeField] private GameObject GameOverPanel;
     [SerializeField] private LightingManager LM;
-    [SerializeField] private static List<Plant> Plants = new List<Plant>();
+    [SerializeField] private Text gameOverText;
     [SerializeField] private GameObject Enemy;
-    [SerializeField] private static Text MoneyText;
+
+    private static GameObject inventoryPanel;
+    private static GameObject currentPanel;
+    public static Interactable interactingObject;
+    private static GameObject marketPanel;
+    private static List<Plant> Plants = new List<Plant>();
+    private static Text MoneyText;
     private static int Money = 100;
-    public int DayCount = 0;
+
+    private Text dayText;
     private int numberOfEnemyToSpawn = 0;
-    bool isNight = false;
+    private bool isNight = false;
     private float DayTimeIncrement = 10f;
     private int rentValue = 10;
     private int rentIncrement = 1;
+
+    public int DayCount = 0;
     // Start is called before the first frame update
     void Start()
     {
-        inventoryPanel = GameObject.Find("InventoryPanel");
-        inventoryPanel.SetActive(false);
-        marketPanel = GameObject.Find("MarketPanel");
-        marketPanel.SetActive(false);
-        LM.TimeOfDay = LightingManager.MaxTimeOfDay * 0.25f + 1;
-        MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
-
-        LM.OnNight += OnNightStart;
-        LM.OnDay += OnDayStart;
-        
+        Init();
     }
 
     // Update is called once per frame
     void Update()
     { 
-        
+        if(Money <= 0)
+        {
+            GameOver();
+        }
     }
 
     private void OnNightStart()
@@ -74,6 +73,7 @@ public class GameManager : MonoBehaviour
     private void OnDayStart()
     {
         DayCount++;
+        UpdateDayText();
         if(DayCount % 10 == 0)
         {
             LightingManager.MaxTimeOfDay += DayTimeIncrement;
@@ -189,6 +189,11 @@ public class GameManager : MonoBehaviour
     {
         MoneyText.text = "Money : " + Money;
     }
+
+    private void UpdateDayText()
+    {
+        dayText.text = "Day : " + DayCount;
+    }
     IEnumerator StartNight()
     {
         float spawnCD = LightingManager.MaxTimeOfDay / numberOfEnemyToSpawn;
@@ -198,5 +203,38 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(spawnCD);
         }
     }
-    
+
+    public void Init()
+    {
+        inventoryPanel = GameObject.Find("InventoryPanel");
+        inventoryPanel.SetActive(false);
+        marketPanel = GameObject.Find("MarketPanel");
+        marketPanel.SetActive(false);
+        LM.TimeOfDay = LightingManager.MaxTimeOfDay * 0.25f + 1;
+        MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
+        dayText = GameObject.Find("DayText").GetComponent<Text>();
+
+        LM.OnNight += OnNightStart;
+        LM.OnDay += OnDayStart;
+        if (GameOverPanel.activeSelf)
+        {
+            GameOverPanel.SetActive(false);
+        }
+    }
+    private void ResetGame()
+    {
+        Money = 100;
+        rentValue = 10;
+        numberOfEnemyToSpawn = 0;
+        isNight = false;
+        DayTimeIncrement = 10f;
+        LM.TimeOfDay = LightingManager.MaxTimeOfDay * 0.25f + 1;
+        rentIncrement = 1;
+    }
+    public void GameOver()
+    {
+        gameOverText.text = "You survived for " + DayCount + "days.";
+        GameOverPanel.SetActive(true);
+        ResetGame();
+    }
 }
