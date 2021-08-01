@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
         LM.TimeOfDay = LightingManager.MaxTimeOfDay * 0.25f + 1;
         MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
         dayText = GameObject.Find("DayText").GetComponent<Text>();
-
+        AudioManager.instance.PlayMusic("ingameMusic");
         LM.OnNight += OnNightStart;
         LM.OnDay += OnDayStart;
         if (GameOverPanel.activeSelf)
