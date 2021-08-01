@@ -97,6 +97,5 @@ public class Player : MonoBehaviour
     public void attackTriggerDisable()
     {
         attackScript.gameObject.SetActive(false);
-        animator.ResetTrigger("Attack");
     }
 }

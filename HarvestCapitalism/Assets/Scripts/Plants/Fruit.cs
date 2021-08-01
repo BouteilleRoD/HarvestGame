@@ -19,7 +19,6 @@ public class Fruit : Item
 
     public override void Use()
     {
-        base.Use();
         if (GameManager.GetInteractingObject() is Market)
         {
             SellItem(this);
@@ -31,8 +30,9 @@ public class Fruit : Item
 
     public void SellItem(Item i)
     {
-        Player.inventory.Remove(i);
         GameManager.AddMoney(i.price);
-        Debug.Log("Item sold");
+        GameManager.UpdateMoney();
+        Player.inventory.Remove(i);
+        Debug.Log("Money = " + GameManager.GetMoney());
     }
 }

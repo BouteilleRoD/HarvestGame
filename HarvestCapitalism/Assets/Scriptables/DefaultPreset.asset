@@ -21,15 +21,15 @@ MonoBehaviour:
     key4: {r: 1, g: 1, b: 1, a: 0}
     key5: {r: 0.9822001, g: 0.9566995, b: 0.022870209, a: 0}
     key6: {r: 0.2216981, g: 0.6336516, b: 1, a: 0}
-    key7: {r: 0.9822001, g: 0.9566995, b: 0.022870209, a: 0}
-    ctime0: 11180
-    ctime1: 20316
-    ctime2: 25559
+    key7: {r: 0.2216981, g: 0.6336516, b: 1, a: 0}
+    ctime0: 19661
+    ctime1: 23593
+    ctime2: 27852
     ctime3: 32768
-    ctime4: 39976
-    ctime5: 45296
-    ctime6: 55705
-    ctime7: 45219
+    ctime4: 37683
+    ctime5: 41942
+    ctime6: 45875
+    ctime7: 55705
     atime0: 0
     atime1: 65535
     atime2: 65535
@@ -80,13 +80,13 @@ MonoBehaviour:
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 13107
-    ctime1: 21974
-    ctime2: 30455
-    ctime3: 36815
-    ctime4: 45104
-    ctime5: 53392
-    ctime6: 0
+    ctime0: 19661
+    ctime1: 23920
+    ctime2: 30262
+    ctime3: 35061
+    ctime4: 41615
+    ctime5: 45875
+    ctime6: 45875
     ctime7: 0
     atime0: 0
     atime1: 65535

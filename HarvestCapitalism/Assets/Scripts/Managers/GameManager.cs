@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,10 +28,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private LightingManager LM;
     [SerializeField] private static List<Plant> Plants = new List<Plant>();
     [SerializeField] private GameObject Enemy;
+    [SerializeField] private static Text MoneyText;
     private static int Money = 100;
     public int DayCount = 0;
     private int numberOfEnemyToSpawn = 0;
     bool isNight = false;
+    private float DayTimeIncrement = 10f;
+    private int rentValue = 10;
+    private int rentIncrement = 1;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +44,7 @@ public class GameManager : MonoBehaviour
         marketPanel = GameObject.Find("MarketPanel");
         marketPanel.SetActive(false);
         LM.TimeOfDay = LightingManager.MaxTimeOfDay * 0.25f + 1;
+        MoneyText = GameObject.Find("MoneyText").GetComponent<Text>();
 
         LM.OnNight += OnNightStart;
         LM.OnDay += OnDayStart;
@@ -47,35 +53,7 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        //if (LM.TimeOfDay >= 0.25f * LightingManager.MaxTimeOfDay - Time.deltaTime && LM.TimeOfDay < 0.25f * LightingManager.MaxTimeOfDay)
-        //{
-        //    DayCount++;
-        //    isNight = false;
-        //    UpdatePlants();
-        //    foreach (Plant p in Plants)
-        //    {
-        //        if (p.recolted)
-        //        {
-        //            RemovePlant(p);
-        //        }
-        //        p.Growing();
-        //    }
-        //    numberOfEnemyToSpawn = 0;
-        //}
-        //if(LM.TimeOfDay >= 0.75f * LightingManager.MaxTimeOfDay - Time.deltaTime  && LM.TimeOfDay < 0.75f * LightingManager.MaxTimeOfDay)
-        //{
-        //    isNight = true;
-        //}
-        //if (isNight && numberOfEnemyToSpawn == 0)
-        //{
-        //    foreach (Plant p in Plants)
-        //    {
-        //        numberOfEnemyToSpawn += p.enemyNumber;
-        //    }
-        //    StartCoroutine("StartNight");
-
-        //}
+    { 
         
     }
 
@@ -96,6 +74,10 @@ public class GameManager : MonoBehaviour
     private void OnDayStart()
     {
         DayCount++;
+        if(DayCount % 10 == 0)
+        {
+            LightingManager.MaxTimeOfDay += DayTimeIncrement;
+        }
         isNight = false;
         UpdatePlants();
         foreach (Plant p in Plants)
@@ -106,6 +88,8 @@ public class GameManager : MonoBehaviour
             }
             p.Growing();
         }
+        PayRent();
+        RentIncrease();
         numberOfEnemyToSpawn = 0;
     }
 
@@ -191,13 +175,28 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void PayRent()
+    {
+        Money -= rentValue;
+        UpdateMoney();
+    }
+    public void RentIncrease()
+    {
+        rentValue += rentIncrement;
+    }
+
+    public static void UpdateMoney()
+    {
+        MoneyText.text = "Money : " + Money;
+    }
     IEnumerator StartNight()
     {
         float spawnCD = LightingManager.MaxTimeOfDay / numberOfEnemyToSpawn;
         for (int i = 0; i < numberOfEnemyToSpawn; i++)
         {
-            Instantiate(Enemy);//TODO random pos sur le terrain
+            Instantiate(Enemy);
             yield return new WaitForSeconds(spawnCD);
         }
     }
+    
 }

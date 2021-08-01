@@ -13,7 +13,7 @@ public class Plant : MonoBehaviour
     public int growingDuration = 1;
     public int enemyNumber = 1;
     public int price = 10;
-   
+    bool maxSize = false;
     public Item fruit;
     
     // Start is called before the first frame update
@@ -44,7 +44,10 @@ public class Plant : MonoBehaviour
         if (!recoltable)
         {
             growingState++;
+            if (growingState == growingDuration) 
+            {
             transform.localScale = transform.localScale * 5f;
+            }
             CheckRecoltable();
         }
     }

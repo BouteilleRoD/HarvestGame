@@ -24,7 +24,6 @@ public class AttackScript : MonoBehaviour
     {
         if (attacker.CompareTag("Enemy"))
         {
-            Debug.Log(other.gameObject.tag);
             if (other.gameObject.CompareTag("Plant"))
             {
                 other.GetComponent<Plant>().HP -= _attackPower;

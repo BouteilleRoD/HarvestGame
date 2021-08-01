@@ -50,7 +50,7 @@ public class ButtonManager : MonoBehaviour
             if (GameManager.GetMoney() > i.price)
             {
                 GameManager.AddMoney(-i.price);
-                Debug.Log("Item bought !");
+                GameManager.UpdateMoney();
             }
             else
             {
