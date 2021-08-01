@@ -11,6 +11,7 @@ public class Plant : MonoBehaviour
     public bool isAlive = true;
     int growingState = 0;
     public int growingDuration = 1;
+    public int enemyNumber = 1;
     public int price = 10;
    
     public Item fruit;

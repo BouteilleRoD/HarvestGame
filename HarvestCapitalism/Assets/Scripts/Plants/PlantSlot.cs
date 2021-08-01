@@ -35,12 +35,15 @@ public class PlantSlot : Interactable
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            outline.enabled = true;
-            GameManager.SetInteractingObject(this);
+            if (GameManager.GetInteractingObject() == null)
+            {
+                outline.enabled = true;
+                GameManager.SetInteractingObject(this);
+            }
         }
     }
     private void OnTriggerExit(Collider other)

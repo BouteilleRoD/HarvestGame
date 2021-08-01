@@ -8,8 +8,13 @@ public class LightingManager : MonoBehaviour
     [SerializeField] private Light DirectionalLight;
     [SerializeField] private LightingPreset Preset;
     //Variables
-    [Range(0,150)] public float TimeOfDay = 76f;
+    public static float MaxTimeOfDay = 150f;
+    [Range(0, 1000)] public float TimeOfDay = 0f;
 
+    public delegate void OnNightHandler();
+    public event OnNightHandler OnNight;
+    public delegate void OnDayHandler();
+    public event OnDayHandler OnDay;
 
 
     private void Update()
@@ -18,9 +23,17 @@ public class LightingManager : MonoBehaviour
         {
             return;
         }
+        if(TimeOfDay < 0.75f * MaxTimeOfDay && TimeOfDay + Time.deltaTime > (MaxTimeOfDay * 0.75f))
+        {
+            OnNight.Invoke();
+        }
+        if (TimeOfDay < 0.25f * MaxTimeOfDay && TimeOfDay + Time.deltaTime > (MaxTimeOfDay * 0.25f))
+        {
+            OnDay.Invoke();
+        }
         TimeOfDay += Time.deltaTime;
-        TimeOfDay %= 150;
-        UpdateLighting(TimeOfDay / 150f);
+        TimeOfDay %= MaxTimeOfDay;
+        UpdateLighting(TimeOfDay / MaxTimeOfDay);
     }
     private void UpdateLighting(float timePercent)
     {

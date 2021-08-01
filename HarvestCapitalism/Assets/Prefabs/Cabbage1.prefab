@@ -100,6 +100,7 @@ MonoBehaviour:
   recolted: 0
   isAlive: 1
   growingDuration: 3
+  enemyNumber: 1
   price: 10
   fruit: {fileID: 3473354384084572386, guid: bdb9d7342038dce4ca92e7919c57aaf7, type: 3}
 --- !u!65 &-6757050920345832186
@@ -113,5 +114,5 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3364704, y: 2.309682, z: 3.633606}
-  m_Center: {x: -0.060610473, y: 1.1331639, z: 0.05831346}
+  m_Size: {x: 1.8486121, y: 1.2797074, z: 2.0132437}
+  m_Center: {x: -0.0606104, y: 0.618177, z: 0.058313385}

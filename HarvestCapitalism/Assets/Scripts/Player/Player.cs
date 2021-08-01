@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
     public float attackPower = 30f;
     //Movement Direction
     float Hdirection, Vdirection;
-    float speed = 5f;
+    float mouvementSpeed = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,13 +27,16 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.right * Hdirection * speed * Time.deltaTime);
-        transform.Translate(Vector3.forward * Vdirection * speed * Time.deltaTime);
-        if(Time.time - lastAttackTimer > attackCooldown)
+        Vector3 sideTranslate = Vector3.right * Hdirection * mouvementSpeed * Time.deltaTime;
+        Vector3 frontTranslate = Vector3.forward * Vdirection * mouvementSpeed * Time.deltaTime;
+        transform.Translate(sideTranslate + frontTranslate);
+
+
+        if (Time.time - lastAttackTimer > attackCooldown && !canAttack)
         {
             canAttack = true;
         }
-        if(Vdirection + Hdirection == 0 && !animator.GetBool("isIdle"))
+        if(Vdirection == 0 && Hdirection == 0 && !animator.GetBool("isIdle"))
         {
             animator.SetBool("isIdle", true);
             animator.SetBool("isWalking", false);

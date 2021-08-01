@@ -14,30 +14,27 @@ public class AttackScript : MonoBehaviour
             _attackPower = attacker.GetComponent<Player>().attackPower;
         }else
         {
-            //if (attacker.CompareTag("Enemy"))
-            //{
-            //    _attackPower = attacker.GetComponent<Enemy>().attackPower;
-            //}
+            if (attacker.CompareTag("Enemy"))
+            {
+                _attackPower = attacker.GetComponent<Enemy>().attackPower;
+            }
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        //if (attacker.CompareTag("Enemy"))
-        //{
-            if (other.transform.parent.CompareTag("Plant"))
-            {
-                other.transform.parent.GetComponent<Plant>().HP -= _attackPower;
-            }
-            if (other.CompareTag("Plant"))
+        if (attacker.CompareTag("Enemy"))
+        {
+            Debug.Log(other.gameObject.tag);
+            if (other.gameObject.CompareTag("Plant"))
             {
                 other.GetComponent<Plant>().HP -= _attackPower;
             }
-        //}
+        }
         if (attacker.CompareTag("Player"))
         {
             if (other.gameObject.CompareTag("Enemy"))
             {
-                //other.GetComponent<Enemy>().HP -= _attackPower;
+                other.GetComponent<Enemy>().HP -= _attackPower;
             }
         }
     }
