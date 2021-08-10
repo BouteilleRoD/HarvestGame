@@ -35,11 +35,12 @@ public class GameManager : MonoBehaviour
     private static int Money = 100;
     private static bool isPaused = false;
 
+    private TMP_Text rentText;
     private TMP_Text dayText;
     private int numberOfEnemyToSpawn = 0;
     private bool isNight = false;
     private float DayTimeIncrement = 10f;
-    private int rentValue = 10;
+    private static int rentValue = 10;
     private int rentIncrement = 1;
 
     public int DayCount = 0;
@@ -83,7 +84,10 @@ public class GameManager : MonoBehaviour
     private void OnDayStart()
     {
         DayCount++;
-        AudioManager.instance.PlaySFX("sfx_daystart");
+        if (AudioManager.instance)
+        {
+            AudioManager.instance.PlaySFX("sfx_daystart");
+        }
         UpdateDayText();
         if(DayCount % 10 == 0)
         {
@@ -144,6 +148,11 @@ public class GameManager : MonoBehaviour
     public static bool GetisPaused()
     {
         return isPaused;
+    }
+
+    public static int GetRent()
+    {
+        return rentValue;
     }
     #endregion
 
@@ -211,6 +220,7 @@ public class GameManager : MonoBehaviour
     public void RentIncrease()
     {
         rentValue += rentIncrement;
+        UpdateRentText();
     }
 
     public static void UpdateMoney()
@@ -221,6 +231,11 @@ public class GameManager : MonoBehaviour
     private void UpdateDayText()
     {
         dayText.text = "Day : " + DayCount;
+    }
+
+    private void UpdateRentText()
+    {
+        rentText.text = "Rent : " + rentValue;
     }
     IEnumerator StartNight()
     {
@@ -246,6 +261,7 @@ public class GameManager : MonoBehaviour
         LM.TimeOfDay = LightingManager.MaxTimeOfDay * 0.25f + 1;
         MoneyText = GameObject.Find("MoneyText").GetComponent<TMP_Text>();
         dayText = GameObject.Find("DayText").GetComponent<TMP_Text>();
+        rentText = GameObject.Find("RentText").GetComponent<TMP_Text>();
         if (AudioManager.instance)
         {
             AudioManager.instance.PlayMusic("ingameMusic");

@@ -57,21 +57,23 @@ public class ButtonManager : MonoBehaviour
         {
             AudioManager.instance.PlaySFX("sfx_button");
         }
-        if (Player.inventory.Add(i))
+        if (GameManager.GetMoney() > i.price && GameManager.GetMoney() - i.price >= GameManager.GetRent())
         {
-            if (GameManager.GetMoney() > i.price)
+            if (Player.inventory.Add(i))
             {
+            
                 GameManager.AddMoney(-i.price);
                 GameManager.UpdateMoney();
             }
             else
             {
-                Debug.Log("Not enough money !");
+                //TODO pop up
             }
         }
         else
         {
             //TODO pop up
+            Debug.Log("Not enough money !");
         }
     }
 
